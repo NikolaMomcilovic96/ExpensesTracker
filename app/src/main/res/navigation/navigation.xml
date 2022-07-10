@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/navigation"
+    app:startDestination="@id/monthsFragment">
+
+    <fragment
+        android:id="@+id/monthsFragment"
+        android:name="com.example.expensestracker.fragments.MonthsFragment"
+        android:label="fragment_months"
+        tools:layout="@layout/fragment_months" >
+        <action
+            android:id="@+id/action_monthsFragment_to_monthDetailsFragment"
+            app:destination="@id/monthDetailsFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/monthDetailsFragment"
+        android:name="com.example.expensestracker.fragments.MonthDetailsFragment"
+        android:label="fragment_month_details"
+        tools:layout="@layout/fragment_month_details" >
+    </fragment>
+</navigation>
