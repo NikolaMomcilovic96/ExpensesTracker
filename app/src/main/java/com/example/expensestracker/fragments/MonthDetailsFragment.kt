@@ -132,13 +132,11 @@ class MonthDetailsFragment : Fragment(), MonthDetailRecyclerViewAdapter.ExpenseC
                 .setTitle("Izmenite postojeci trosak").show()
         val saveButton = dialogView.findViewById<Button>(R.id.saveButton)
         val deleteButton = dialogView.findViewById<ImageView>(R.id.deleteButton)
-        val expenseTextView = dialogView.findViewById<TextView>(R.id.expenseNameDetailTextView)
-        val valueTextView = dialogView.findViewById<TextView>(R.id.expeneValueDetailTextView)
         val expenseEditText = dialogView.findViewById<EditText>(R.id.expenseNameDetailEditText)
         val valueEditText = dialogView.findViewById<EditText>(R.id.expenseValueDetailEditText)
 
-        expenseTextView.text = expense.title
-        valueTextView.text = "${expense.value} dinara"
+        expenseEditText.setText(expense.title)
+        valueEditText.setText(expense.value.toString())
 
         val expenses = mutableListOf<Expense>()
         viewModel.getExpenses(monthId)

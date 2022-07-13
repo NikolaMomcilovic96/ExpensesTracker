@@ -47,14 +47,12 @@ class MonthsFragment : Fragment(), MonthsRecyclerViewAdapter.MonthClickedInterfa
         setViewModel()
         val months = mutableListOf<Month>()
 
-        val adapter = MonthsRecyclerViewAdapter(this)
-        binding.monthsRecyclerView.adapter = adapter
-        binding.monthsRecyclerView.layoutManager = LinearLayoutManager(context)
-        adapter.setData(months)
-
         viewModel.getMonths()
         viewModel.months.observe(viewLifecycleOwner) {
-            refreshRecyclerView(it)
+            val adapter = MonthsRecyclerViewAdapter(this)
+            binding.monthsRecyclerView.adapter = adapter
+            binding.monthsRecyclerView.layoutManager = LinearLayoutManager(context)
+            adapter.setData(it)
             for (i in it) {
                 months.add(i)
             }

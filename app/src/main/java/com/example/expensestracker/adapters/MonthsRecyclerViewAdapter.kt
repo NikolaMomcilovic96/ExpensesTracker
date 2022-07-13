@@ -26,9 +26,12 @@ class MonthsRecyclerViewAdapter(private val monthClickedInterface: MonthClickedI
         val card = holder.itemView.findViewById<CardView>(R.id.monthCardView)
         val month = holder.itemView.findViewById<TextView>(R.id.monthNameTextView)
         val total = holder.itemView.findViewById<TextView>(R.id.totalExpensesTextView)
-        val money = countTotal(months[position])
+        var totalExpenses = 0
+        for (i in months[position].expenses) {
+            totalExpenses += i.value
+        }
         month.text = months[position].month
-        total.text = "$money dinara"
+        total.text = "$totalExpenses dinara"
         card.setOnClickListener {
             monthClickedInterface.onMonthClick(months[position])
         }
@@ -44,13 +47,5 @@ class MonthsRecyclerViewAdapter(private val monthClickedInterface: MonthClickedI
 
     interface MonthClickedInterface {
         fun onMonthClick(month: Month)
-    }
-
-    private fun countTotal(month: Month): Int {
-        var total = 0
-        for (i in month.expenses) {
-            total += i.value
-        }
-        return total
     }
 }

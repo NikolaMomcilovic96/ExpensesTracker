@@ -21,5 +21,6 @@ class MonthsRepository(private val service: FirebaseService) {
     suspend fun updateExpense(monthId: Int, expenseId: Int, expense: Expense) =
         service.updateExpense(monthId, expenseId, expense)
 
-    suspend fun deleteExpense(monthId: Int, expenseId: Int) = service.deleteExpense(monthId, expenseId)
+    suspend fun deleteExpense(monthId: Int, expenseId: Int) =
+        service.deleteExpense(monthId, expenseId)
 }
