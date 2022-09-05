@@ -52,7 +52,8 @@ class MonthDetailsFragment : Fragment(), MonthDetailRecyclerViewAdapter.ExpenseC
             for (i in it.expenses) {
                 countTotal += i.value
             }
-            binding.totalTextView.text = "$countTotal dinara"
+            val text = "$countTotal dinara"
+            binding.totalTextView.text = text
             refreshRecyclerView(it.expenses, monthId, monthName)
             hideProgressBar()
             for (i in it.expenses) {
@@ -121,7 +122,8 @@ class MonthDetailsFragment : Fragment(), MonthDetailRecyclerViewAdapter.ExpenseC
     }
 
     private fun updateTotal(total: Int) {
-        binding.totalTextView.text = "$total dinara"
+        val text = "$total dinara"
+        binding.totalTextView.text = text
     }
 
     override fun onExpenseClick(expense: Expense, monthId: Int, monthName: String) {
@@ -134,6 +136,7 @@ class MonthDetailsFragment : Fragment(), MonthDetailRecyclerViewAdapter.ExpenseC
         val deleteButton = dialogView.findViewById<ImageView>(R.id.deleteButton)
         val expenseEditText = dialogView.findViewById<EditText>(R.id.expenseNameDetailEditText)
         val valueEditText = dialogView.findViewById<EditText>(R.id.expenseValueDetailEditText)
+        val extraEditText = dialogView.findViewById<EditText>(R.id.expenseExtraEditText)
 
         expenseEditText.setText(expense.title)
         valueEditText.setText(expense.value.toString())
@@ -149,12 +152,20 @@ class MonthDetailsFragment : Fragment(), MonthDetailRecyclerViewAdapter.ExpenseC
         saveButton.setOnClickListener {
             val title = expenseEditText.text.toString()
             val value = valueEditText.text.toString()
+            val extra = extraEditText.text.toString()
             val expenseId = expense.id
             if (title.isNotEmpty() && value.isNotEmpty()) {
                 expenses.removeAt(expenseId)
-                val newExpense = Expense(expenseId, title, value.toInt())
-                viewModel.updateExpense(monthId, expenseId, newExpense)
-                expenses.add(newExpense)
+                if (extra.isEmpty()) {
+                    val newExpense = Expense(expenseId, title, value.toInt())
+                    viewModel.updateExpense(monthId, expenseId, newExpense)
+                    expenses.add(newExpense)
+                } else {
+                    val total = value.toInt() + extra.toInt()
+                    val newExpense = Expense(expenseId, title, total)
+                    viewModel.updateExpense(monthId, expenseId, newExpense)
+                    expenses.add(newExpense)
+                }
                 var newTotal = 0
                 for (i in expenses) {
                     newTotal += i.value
@@ -183,7 +194,8 @@ class MonthDetailsFragment : Fragment(), MonthDetailRecyclerViewAdapter.ExpenseC
             for (i in it) {
                 total += i.value
             }
-            binding.totalTextView.text = "$total dinara"
+            val text = "$total dinara"
+            binding.totalTextView.text = text
         }
     }
 }
