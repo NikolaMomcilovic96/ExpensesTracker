@@ -7,4 +7,6 @@
     <string name="naziv">Naziv</string>
     <string name="vrednost">Vrednost</string>
     <string name="dodaj">Dodaj</string>
+    <string name="spisak_troskova">Spisak troskova</string>
+    <string name="dodavanje_novog_meseca">Dodavanje novog meseca</string>
 </resources>
