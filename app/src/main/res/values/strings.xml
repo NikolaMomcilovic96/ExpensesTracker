@@ -9,4 +9,8 @@
     <string name="dodaj">Dodaj</string>
     <string name="spisak_troskova">Spisak troskova</string>
     <string name="dodavanje_novog_meseca">Dodavanje novog meseca</string>
+    <string name="naziv_troska">Naziv troska</string>
+    <string name="mesec">Mesec</string>
+    <string name="dodaj_mesec">Dodaj mesec</string>
+    <string name="obrisi_trosak">Obrisi trosak</string>
 </resources>

@@ -40,22 +40,23 @@
         android:layout_marginBottom="30dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:srcCompat="@android:drawable/ic_menu_delete" />
+        app:srcCompat="@android:drawable/ic_menu_delete"
+        android:contentDescription="@string/obrisi_trosak" />
 
     <EditText
         android:id="@+id/expenseValueDetailEditText"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="20dp"
+        android:autofillHints="Vrednost troska"
         android:ems="10"
         android:hint="@string/vrednost"
-        android:inputType="textPersonName"
+        android:inputType="number"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/expenseNameDetailEditText"
-        tools:ignore="TouchTargetSizeCheck"
-        android:autofillHints="Vrednost troska" />
+        tools:ignore="TouchTargetSizeCheck" />
 
     <EditText
         android:id="@+id/expenseExtraEditText"
@@ -65,10 +66,11 @@
         android:autofillHints="Dodatak troska"
         android:ems="10"
         android:hint="@string/dodaj"
-        android:inputType="textPersonName"
+        android:inputType="number"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/expenseValueDetailEditText"
         tools:ignore="TouchTargetSizeCheck" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
