@@ -127,13 +127,21 @@ class ExpensesFragment : Fragment(), ExpensesAdapter.ExpenseClickListener {
             val extra = extraEditText.text.toString()
             if (title.isNotEmpty() && value.isNotEmpty()) {
                 if (extra.isEmpty()) {
-                    viewModel.updateExpense(expense)
+                    val newExpense = Expense(
+                        expense.id,
+                        expense.monthId,
+                        title,
+                        value.toInt()
+                    )
+                    viewModel.updateExpense(newExpense)
                 } else {
                     val total = value.toInt() + extra.toInt()
-                    val updatedExpense = Expense(expense.id, expense.monthId, title, total)
-                    viewModel.updateExpense(updatedExpense)
+                    val newExpense = Expense(expense.id, expense.monthId, title, total)
+                    viewModel.updateExpense(newExpense)
                 }
                 builder.dismiss()
+            } else {
+                Toast.makeText(context, "All fields are required!", Toast.LENGTH_SHORT).show()
             }
         }
 

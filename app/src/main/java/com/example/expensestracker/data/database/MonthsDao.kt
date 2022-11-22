@@ -31,6 +31,6 @@ interface MonthsDao {
     @Query("DELETE FROM expense WHERE id=:expenseId")
     suspend fun deleteExpense(expenseId: Int)
 
-    @Query("UPDATE expense SET title=:title, price=:price WHERE id=:expenseId")
+    @Query("UPDATE expense SET title = :title, price = :price WHERE id = :expenseId")
     suspend fun updateExpense(expenseId: Int, title: String, price: Int)
 }
