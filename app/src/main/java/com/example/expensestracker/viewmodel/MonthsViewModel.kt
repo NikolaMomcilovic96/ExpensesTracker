@@ -1,60 +1,84 @@
 package com.example.expensestracker.viewmodel
 
-import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
-import androidx.lifecycle.viewModelScope
-import com.example.expensestracker.models.Expense
-import com.example.expensestracker.models.Month
-import com.example.expensestracker.repository.MonthsRepository
+import androidx.lifecycle.*
+import com.example.expensestracker.data.models.Expense
+import com.example.expensestracker.data.models.Month
+import com.example.expensestracker.data.repository.MonthsRepositoryImpl
+import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
+import javax.inject.Inject
 
-class MonthsViewModel(private val monthsRepository: MonthsRepository) : ViewModel() {
-    val months: MutableLiveData<List<Month>> = MutableLiveData()
-    val month: MutableLiveData<Month> = MutableLiveData()
-    val expenses: MutableLiveData<List<Expense>> = MutableLiveData()
+@HiltViewModel
+class MonthsViewModel @Inject constructor(private val repository: MonthsRepositoryImpl) :
+    ViewModel() {
+
+    private val _months: MutableLiveData<List<Month>> = MutableLiveData()
+    val months: LiveData<List<Month>>
+        get() = _months
+
+    private val _expenses: MutableLiveData<List<Expense>> = MutableLiveData()
+    val expenses: LiveData<List<Expense>>
+        get() = _expenses
+
+    val total: LiveData<Int> = MediatorLiveData<Int>().apply {
+        addSource(expenses) { result ->
+            val totalCost = result.sumOf { it.price }
+            postValue(totalCost)
+        }
+    }
 
     fun getMonths() {
         viewModelScope.launch {
-            val result = monthsRepository.getMonths()
-            months.value = result.body()
+            val result = repository.getMonths()
+            _months.postValue(result)
         }
     }
 
-    fun updateMonths(months: List<Month>) {
+    fun addMonth(month: Month) {
         viewModelScope.launch {
-            monthsRepository.updateMonths(months)
+            repository.addMonth(month)
+            getMonths()
         }
     }
 
-    fun getMonth(id: Int) {
+    /*fun deleteMonth(monthId: Int) {
         viewModelScope.launch {
-            val result = monthsRepository.getMonth(id)
-            month.value = result.body()
+            repository.deleteMonth(monthId)
+            getMonths()
+        }
+    }*/
+
+    fun updateMonth(monthId: Int, name: String, total: Int) {
+        viewModelScope.launch {
+            repository.updateMonth(monthId, name, total)
         }
     }
 
-    fun updateExpenses(id: Int, month: Month) {
+    fun getExpenses(monthId: Int) {
         viewModelScope.launch {
-            monthsRepository.updateExpenses(id, month)
+            val result = repository.getExpenses(monthId)
+            _expenses.postValue(result)
         }
     }
 
-    fun getExpenses(id: Int) {
+    fun addExpense(expense: Expense) {
         viewModelScope.launch {
-            val result = monthsRepository.getExpenses(id)
-            expenses.value = result.body()
+            repository.addExpense(expense)
+            getExpenses(expense.monthId)
         }
     }
 
-    fun updateExpense(monthId: Int, expenseId: Int, expense: Expense) {
+    fun deleteExpense(expense: Expense) {
         viewModelScope.launch {
-            monthsRepository.updateExpense(monthId, expenseId, expense)
+            repository.deleteExpense(expense.id)
+            getExpenses(expense.monthId)
         }
     }
 
-    fun deleteExpense(monthId: Int, expenseId: Int) {
+    fun updateExpense(expense: Expense) {
         viewModelScope.launch {
-            monthsRepository.deleteExpense(monthId, expenseId)
+            repository.updateExpense(expense.id, expense.title, expense.price)
+            getExpenses(expense.monthId)
         }
     }
 }

@@ -9,15 +9,21 @@
         android:id="@+id/monthsFragment"
         android:name="com.example.expensestracker.fragments.MonthsFragment"
         android:label="fragment_months"
-        tools:layout="@layout/fragment_months" >
+        tools:layout="@layout/fragment_months">
         <action
-            android:id="@+id/action_monthsFragment_to_monthDetailsFragment"
-            app:destination="@id/monthDetailsFragment" />
+            android:id="@+id/action_monthsFragment_to_expensesFragment"
+            app:destination="@id/expensesFragment" />
     </fragment>
     <fragment
-        android:id="@+id/monthDetailsFragment"
-        android:name="com.example.expensestracker.fragments.MonthDetailsFragment"
-        android:label="fragment_month_details"
-        tools:layout="@layout/fragment_month_details" >
+        android:id="@+id/expensesFragment"
+        android:name="com.example.expensestracker.fragments.ExpensesFragment"
+        android:label="fragment_expenses"
+        tools:layout="@layout/fragment_expenses">
+        <argument
+            android:name="monthName"
+            app:argType="string" />
+        <argument
+            android:name="monthId"
+            app:argType="integer" />
     </fragment>
 </navigation>

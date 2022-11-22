@@ -3,16 +3,17 @@ package com.example.expensestracker
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.core.view.WindowCompat
-import com.example.expensestracker.databinding.ActivityMainBinding
+import androidx.navigation.findNavController
+import dagger.hilt.android.AndroidEntryPoint
 
-class MainActivity : AppCompatActivity() {
-
-    private lateinit var binding: ActivityMainBinding
-
+@AndroidEntryPoint
+class MainActivity : AppCompatActivity(R.layout.activity_main) {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding = ActivityMainBinding.inflate(layoutInflater)
         WindowCompat.setDecorFitsSystemWindows(window, false)
-        setContentView(binding.root)
+    }
+
+    override fun onSupportNavigateUp(): Boolean {
+        return findNavController(R.id.fragmentContainerView).navigateUp()
     }
 }
