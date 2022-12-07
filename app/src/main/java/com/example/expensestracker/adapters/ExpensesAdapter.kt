@@ -11,6 +11,7 @@ class ExpensesAdapter(
 ) : RecyclerView.Adapter<ExpensesViewHolder>() {
 
     private var expenses = mutableListOf<Expense>()
+    private var currency = ""
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ExpensesViewHolder {
         return ExpensesViewHolder(
@@ -19,7 +20,8 @@ class ExpensesAdapter(
                 parent,
                 false
             ),
-            expenseClickListener = expenseClickListener
+            expenseClickListener = expenseClickListener,
+            currency = currency
         )
     }
 
@@ -31,8 +33,9 @@ class ExpensesAdapter(
         return expenses.size
     }
 
-    fun setData(data: List<Expense>) {
+    fun setData(data: List<Expense>, currency: String) {
         this.expenses = data.toMutableList()
+        this.currency = currency
         notifyDataSetChanged()
     }
 

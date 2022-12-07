@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">ExpensesTracker</string>
+    <string name="go_back">Vrati se nazad</string>
+    <string name="delete_expense">Ukloni trosak</string>
+    <string name="add_new_month">Dodaj novi mesec</string>
+    <string name="add_new_expense">Dodaj novi trosak</string>
+    <string name="expense_details">Detalji troska</string>
+    <string name="expense_title">Naziv troska</string>
+    <string name="current_value">Trenutna vrednost</string>
+    <string name="extra_value">Dodatna vrednost</string>
+    <string name="save_changes">Sacuvaj promene</string>
+    <string name="edit_month">Izmeni mesec</string>
+    <string name="month_name">Naziv meseca</string>
+    <string name="delete_month">Ukloni mesec</string>
+    <string name="expense_value">Vrednost troska</string>
+    <string name="add_expense">Dodaj trosak</string>
+    <string name="add_first_expense">Dodaj prvi trosak</string>
+    <string name="expenses_tracker">Expenses tracker</string>
+    <string name="add_first_month">Dodajte prvi trosak</string>
+    <string name="settings">Podesavanja</string>
+    <string name="app_language">Jezik aplikacije</string>
+    <string name="english">English</string>
+    <string name="serbian">Srpski</string>
+    <string name="app_currency">Valuta aplikacije</string>
+</resources>

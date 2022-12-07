@@ -1,6 +1,8 @@
 package com.example.expensestracker.fragments
 
 import android.annotation.SuppressLint
+import android.content.Context
+import android.content.SharedPreferences
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -30,6 +32,7 @@ class ExpensesFragment : Fragment(), ExpensesAdapter.ExpenseClickListener {
     private val viewModel: MonthsViewModel by viewModels()
     private val adapter = ExpensesAdapter(this)
     private val args by navArgs<ExpensesFragmentArgs>()
+    private lateinit var sharedPreferences: SharedPreferences
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -59,13 +62,16 @@ class ExpensesFragment : Fragment(), ExpensesAdapter.ExpenseClickListener {
     }
 
     private fun observeViewModel() = with(binding) {
+        sharedPreferences =
+            context?.getSharedPreferences("sharedPref", Context.MODE_PRIVATE)!!
+        val currency = sharedPreferences.getString("Currency", "RSD").toString()
         viewModel.getExpenses(args.monthId)
         viewModel.expenses.observe(viewLifecycleOwner) {
-            adapter.setData(it)
+            adapter.setData(it, currency)
             checkIfEmptyRecyclerView(it)
         }
         viewModel.total.observe(viewLifecycleOwner) {
-            val total = "$it RSD"
+            val total = "$it $currency"
             totalTextView.text = total
         }
     }
@@ -131,7 +137,7 @@ class ExpensesFragment : Fragment(), ExpensesAdapter.ExpenseClickListener {
                     viewModel.updateMonth(
                         args.monthId,
                         monthNameEditText.text.toString(),
-                        0
+                        args.total
                     )
                     monthDetailsNameTextView.text = monthNameEditText.text.toString()
                     dialog.dismiss()

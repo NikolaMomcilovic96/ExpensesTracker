@@ -13,6 +13,9 @@
         <action
             android:id="@+id/action_monthsFragment_to_expensesFragment"
             app:destination="@id/expensesFragment" />
+        <action
+            android:id="@+id/action_monthsFragment_to_settingsFragment"
+            app:destination="@id/settingsFragment" />
     </fragment>
     <fragment
         android:id="@+id/expensesFragment"
@@ -25,8 +28,16 @@
         <argument
             android:name="monthId"
             app:argType="integer" />
+        <argument
+            android:name="total"
+            app:argType="integer" />
         <action
             android:id="@+id/action_expensesFragment_to_monthsFragment"
             app:destination="@id/monthsFragment" />
     </fragment>
+    <fragment
+        android:id="@+id/settingsFragment"
+        android:name="com.example.expensestracker.fragments.SettingsFragment"
+        android:label="fragment_settings"
+        tools:layout="@layout/fragment_settings" />
 </navigation>
