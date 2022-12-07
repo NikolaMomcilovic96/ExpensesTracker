@@ -12,8 +12,7 @@
         <!-- Status bar color. -->
         <item name="android:statusBarColor">@android:color/transparent</item>
         <item name="android:navigationBarColor">@android:color/transparent</item>
-        <item name="android:windowLightStatusBar">
-            true
-        </item>
+        <item name="android:windowLightStatusBar">true</item>
+        <item name="bottomSheetDialogTheme">@style/AppBottomSheetDialogLightTheme</item>
     </style>
 </resources>

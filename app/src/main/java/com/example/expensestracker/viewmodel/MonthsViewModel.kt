@@ -41,12 +41,12 @@ class MonthsViewModel @Inject constructor(private val repository: MonthsReposito
         }
     }
 
-    /*fun deleteMonth(monthId: Int) {
+    fun deleteMonth(monthId: Int) {
         viewModelScope.launch {
             repository.deleteMonth(monthId)
             getMonths()
         }
-    }*/
+    }
 
     fun updateMonth(monthId: Int, name: String, total: Int) {
         viewModelScope.launch {

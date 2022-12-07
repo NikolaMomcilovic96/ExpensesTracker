@@ -24,7 +24,7 @@
         android:layout_height="wrap_content"
         android:layout_margin="20dp"
         android:clickable="true"
-        android:contentDescription="@string/dodavanje_novog_meseca"
+        android:contentDescription="@string/add_new_month"
         android:focusable="true"
         android:src="@android:drawable/ic_input_add"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -37,7 +37,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="20dp"
         android:layout_marginTop="57dp"
-        android:text="@string/spisak_troskova"
+        android:text="@string/expenses_tracker"
         android:textSize="25sp"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
@@ -52,5 +52,5 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        tools:text="Dodajte prvi mesec" />
+        android:text="@string/add_first_month" />
 </androidx.constraintlayout.widget.ConstraintLayout>

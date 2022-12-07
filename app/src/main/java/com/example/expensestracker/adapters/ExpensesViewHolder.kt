@@ -11,7 +11,7 @@ class ExpensesViewHolder(
 
     fun bind(expense: Expense) = with(binding) {
         expenseTitleTextView.text = expense.title
-        val price = "${expense.price} dinara"
+        val price = "${expense.price} RSD"
         expenseValueTextView.text = price
         expenseCardView.setOnClickListener {
             expenseClickListener.onExpenseClickListener(expense)
