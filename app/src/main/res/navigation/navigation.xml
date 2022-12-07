@@ -25,5 +25,8 @@
         <argument
             android:name="monthId"
             app:argType="integer" />
+        <action
+            android:id="@+id/action_expensesFragment_to_monthsFragment"
+            app:destination="@id/monthsFragment" />
     </fragment>
 </navigation>

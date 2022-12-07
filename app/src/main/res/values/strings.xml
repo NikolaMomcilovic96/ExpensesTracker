@@ -1,17 +1,23 @@
 <resources>
     <string name="app_name">ExpensesTracker</string>
-    <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
-    <string name="dodaj_trosak">Dodaj trosak</string>
-    <string name="sacuvaj">Sacuvaj</string>
-    <string name="naziv">Naziv</string>
-    <string name="vrednost">Vrednost</string>
-    <string name="dodaj">Dodaj</string>
-    <string name="spisak_troskova">Spisak troskova</string>
-    <string name="dodavanje_novog_meseca">Dodavanje novog meseca</string>
-    <string name="naziv_troska">Naziv troska</string>
-    <string name="mesec">Mesec</string>
-    <string name="dodaj_mesec">Dodaj mesec</string>
-    <string name="obrisi_trosak">Obrisi trosak</string>
     <string name="go_back">Go back</string>
+    <string name="trash_icon">Trash icon</string>
+    <string name="delete_expense">Delete expense</string>
+    <string name="add_new_month">Add new month</string>
+    <string name="add_new_expense">Add new expense</string>
+    <string name="expense_details">Expense details</string>
+    <string name="expense_title">Expense title</string>
+    <string name="current_value">Current value</string>
+    <string name="extra_value">Extra value</string>
+    <string name="save_changes">Save changes</string>
+    <string name="edit_month">Edit month</string>
+    <string name="month_name">Month name</string>
+    <string name="delete_month">Delete month</string>
+    <string name="expense_value">Expense value</string>
+    <string name="add_expense">Add expense</string>
+    <string name="add_first_expense">Add first expense</string>
+    <string name="expenses_tracker">Expenses tracker</string>
+    <string name="dodajte_prvi_mesec">Dodajte prvi mesec</string>
+    <string name="add_first_month">Add first month</string>
 </resources>

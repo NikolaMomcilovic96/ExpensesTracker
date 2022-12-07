@@ -8,7 +8,6 @@ import android.view.ViewGroup
 import android.widget.Button
 import android.widget.EditText
 import android.widget.Toast
-import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -18,6 +17,7 @@ import com.example.expensestracker.data.models.Month
 import com.example.expensestracker.databinding.FragmentMonthsBinding
 import com.example.expensestracker.fragments.delegates.viewBinding
 import com.example.expensestracker.viewmodel.MonthsViewModel
+import com.google.android.material.bottomsheet.BottomSheetDialog
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -47,22 +47,22 @@ class MonthsFragment : Fragment() {
 
     private fun setupFAB() {
         binding.addMonthFloatingActionButton.setOnClickListener {
-            val dialogView =
-                LayoutInflater.from(context).inflate(R.layout.add_month_dialog, null)
-            val builder =
-                AlertDialog.Builder(requireContext()).setView(dialogView)
-                    .setTitle("Dodajte novi mesec").show()
-            val button = dialogView.findViewById<Button>(R.id.createMonthButton)
-            val editText = dialogView.findViewById<EditText>(R.id.monthNameEditText)
+            val dialog = BottomSheetDialog(requireContext())
+            val view = layoutInflater.inflate(R.layout.add_month_dialog, null)
+            val button = view.findViewById<Button>(R.id.createMonthButton)
+            val editText = view.findViewById<EditText>(R.id.monthNameEditText)
+
+            dialog.setContentView(view)
+            dialog.show()
 
             button.setOnClickListener {
                 val monthName = editText.text.toString()
                 if (monthName.isNotEmpty()) {
                     val newMonth = Month(0, monthName, 0)
                     viewModel.addMonth(newMonth)
-                    builder.dismiss()
+                    dialog.dismiss()
                 } else {
-                    Toast.makeText(context, "Ime meseca je obavezno", Toast.LENGTH_SHORT)
+                    Toast.makeText(context, "Month name is required!", Toast.LENGTH_SHORT)
                         .show()
                     editText.requestFocus()
                 }
@@ -86,7 +86,7 @@ class MonthsFragment : Fragment() {
     private fun checkIfEmptyRecyclerView(months: List<Month>) = with(binding) {
         if (months.isEmpty()) {
             noItemsViewTextView.visibility = View.VISIBLE
-            val text = "Dodajte prvi mesec"
+            val text = "Add first month"
             noItemsViewTextView.text = text
         } else {
             noItemsViewTextView.visibility = View.GONE

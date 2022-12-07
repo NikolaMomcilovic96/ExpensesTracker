@@ -11,7 +11,7 @@ class MonthsViewHolder(
 
     fun bind(month: Month) = with(binding) {
         monthNameTextView.text = month.name
-        val totalPrice = "${month.total} dinara"
+        val totalPrice = "${month.total} RSD"
         totalExpensesTextView.text = totalPrice
 
         monthCardView.setOnClickListener {
