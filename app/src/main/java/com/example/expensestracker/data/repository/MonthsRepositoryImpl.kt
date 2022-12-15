@@ -41,4 +41,9 @@ class MonthsRepositoryImpl @Inject constructor(private val monthsDao: MonthsDao)
     override suspend fun updateExpense(expenseId: Int, title: String, price: Int) {
         monthsDao.updateExpense(expenseId, title, price)
     }
+
+    override suspend fun deleteAllData() {
+        monthsDao.deleteAllExpenses()
+        monthsDao.deleteAllMonths()
+    }
 }

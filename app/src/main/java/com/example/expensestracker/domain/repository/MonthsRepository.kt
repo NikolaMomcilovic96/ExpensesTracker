@@ -20,4 +20,6 @@ interface MonthsRepository {
     suspend fun deleteExpense(expenseId: Int)
 
     suspend fun updateExpense(expenseId: Int, title: String, price: Int)
+
+    suspend fun deleteAllData()
 }
