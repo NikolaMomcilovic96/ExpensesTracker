@@ -9,7 +9,6 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
-import androidx.navigation.fragment.findNavController
 import com.example.expensestracker.databinding.FragmentSettingsBinding
 import com.example.expensestracker.fragments.delegates.viewBinding
 
@@ -22,7 +21,6 @@ class SettingsFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        configureBackButton()
         configureLanguageSwitch()
         configureCurrencySpinner()
 
@@ -76,12 +74,6 @@ class SettingsFragment : Fragment() {
             } else {
                 TODO("Nzm kako")
             }
-        }
-    }
-
-    private fun configureBackButton() = with(binding) {
-        backButton.setOnClickListener {
-            findNavController().popBackStack()
         }
     }
 }

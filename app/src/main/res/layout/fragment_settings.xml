@@ -6,28 +6,16 @@
     android:layout_height="match_parent"
     tools:context=".fragments.SettingsFragment">
 
-    <ImageView
-        android:id="@+id/backButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="10dp"
-        android:layout_marginTop="57dp"
-        android:contentDescription="@string/go_back"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/arrow_left" />
-
     <TextView
         android:id="@+id/monthDetailsNameTextView"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="10dp"
         android:layout_marginTop="57dp"
-        android:layout_marginEnd="10dp"
         android:text="@string/settings"
         android:textSize="22sp"
+        android:layout_marginStart="20dp"
         android:textStyle="bold"
-        app:layout_constraintStart_toEndOf="@+id/backButton"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <ScrollView
