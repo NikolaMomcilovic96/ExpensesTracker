@@ -1,5 +1,7 @@
 package com.example.expensestracker.fragments
 
+import android.content.Context
+import android.content.SharedPreferences
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -25,11 +27,13 @@ class MonthsFragment : Fragment() {
 
     private val binding by viewBinding(FragmentMonthsBinding::inflate)
     private val viewModel: MonthsViewModel by viewModels()
+    private lateinit var sharedPreferences: SharedPreferences
     private val adapter = MonthsAdapter {
         findNavController().navigate(
             MonthsFragmentDirections.actionMonthsFragmentToExpensesFragment(
                 it.name,
-                it.id
+                it.id,
+                it.total
             )
         )
     }
@@ -71,9 +75,12 @@ class MonthsFragment : Fragment() {
     }
 
     private fun observeViewModel() {
+        sharedPreferences =
+            context?.getSharedPreferences("sharedPref", Context.MODE_PRIVATE)!!
+        val currency = sharedPreferences.getString("Currency", "RSD").toString()
         viewModel.getMonths()
         viewModel.months.observe(viewLifecycleOwner) {
-            adapter.setData(it)
+            adapter.setData(it, currency)
             checkIfEmptyRecyclerView(it)
         }
     }

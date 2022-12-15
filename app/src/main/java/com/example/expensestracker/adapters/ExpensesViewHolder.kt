@@ -6,12 +6,13 @@ import com.example.expensestracker.databinding.ExpenseItemBinding
 
 class ExpensesViewHolder(
     private val binding: ExpenseItemBinding,
-    private val expenseClickListener: ExpensesAdapter.ExpenseClickListener
+    private val expenseClickListener: ExpensesAdapter.ExpenseClickListener,
+    private val currency: String
 ) : RecyclerView.ViewHolder(binding.root) {
 
     fun bind(expense: Expense) = with(binding) {
         expenseTitleTextView.text = expense.title
-        val price = "${expense.price} RSD"
+        val price = "${expense.price} $currency"
         expenseValueTextView.text = price
         expenseCardView.setOnClickListener {
             expenseClickListener.onExpenseClickListener(expense)

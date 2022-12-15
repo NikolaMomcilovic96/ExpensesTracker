@@ -12,11 +12,13 @@ class MonthsAdapter(
     RecyclerView.Adapter<MonthsViewHolder>() {
 
     private var months = mutableListOf<Month>()
+    private var currency = ""
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MonthsViewHolder {
         return MonthsViewHolder(
             binding = MonthItemBinding.inflate(LayoutInflater.from(parent.context), parent, false),
-            onUserClicked = onUserClicked
+            onUserClicked = onUserClicked,
+            currency = currency
         )
     }
 
@@ -28,8 +30,9 @@ class MonthsAdapter(
         return months.size
     }
 
-    fun setData(months: List<Month>) {
+    fun setData(months: List<Month>, currency: String) {
         this.months = months.toMutableList()
+        this.currency = currency
         notifyDataSetChanged()
     }
 }
