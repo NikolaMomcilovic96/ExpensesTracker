@@ -81,4 +81,10 @@ class MonthsViewModel @Inject constructor(private val repository: MonthsReposito
             getExpenses(expense.monthId)
         }
     }
+
+    fun deleteAllData() {
+        viewModelScope.launch {
+            repository.deleteAllData()
+        }
+    }
 }

@@ -9,13 +9,21 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
+import android.widget.Toast
+import androidx.fragment.app.viewModels
+import androidx.navigation.Navigation
+import com.example.expensestracker.R
 import com.example.expensestracker.databinding.FragmentSettingsBinding
 import com.example.expensestracker.fragments.delegates.viewBinding
+import com.example.expensestracker.viewmodel.MonthsViewModel
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class SettingsFragment : Fragment() {
 
     private val binding by viewBinding(FragmentSettingsBinding::inflate)
     private lateinit var sharedPreferences: SharedPreferences
+    private val viewModel: MonthsViewModel by viewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -23,8 +31,18 @@ class SettingsFragment : Fragment() {
     ): View {
         configureLanguageSwitch()
         configureCurrencySpinner()
+        configureDeleteButton()
 
         return binding.root
+    }
+
+    private fun configureDeleteButton() = with(binding) {
+        deleteAllDataButton.setOnClickListener {
+            viewModel.deleteAllData()
+            Toast.makeText(it.context, "All data is deleted", Toast.LENGTH_SHORT).show()
+            Navigation.findNavController(it)
+                .navigate(R.id.action_settingsFragment_to_navigation_months)
+        }
     }
 
     private fun configureCurrencySpinner() = with(binding) {
