@@ -11,7 +11,6 @@ import android.widget.Button
 import android.widget.EditText
 import android.widget.Toast
 import androidx.fragment.app.viewModels
-import androidx.navigation.Navigation
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.expensestracker.R
@@ -46,7 +45,6 @@ class MonthsFragment : Fragment() {
         configureList()
         observeViewModel()
         setupFAB()
-        configureSettingsButton()
 
         return binding.root
     }
@@ -99,13 +97,6 @@ class MonthsFragment : Fragment() {
             noItemsViewTextView.text = text
         } else {
             noItemsViewTextView.visibility = View.GONE
-        }
-    }
-
-    private fun configureSettingsButton() = with(binding) {
-        settingsButton.setOnClickListener {
-            Navigation.findNavController(it)
-                .navigate(R.id.action_monthsFragment_to_settingsFragment)
         }
     }
 }

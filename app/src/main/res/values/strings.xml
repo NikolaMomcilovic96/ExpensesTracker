@@ -23,4 +23,5 @@
     <string name="english">English</string>
     <string name="serbian">Srpski</string>
     <string name="app_currency">App currency</string>
+    <string name="months">Months</string>
 </resources>
