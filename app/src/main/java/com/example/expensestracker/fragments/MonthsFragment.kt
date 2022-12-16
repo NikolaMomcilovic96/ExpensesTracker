@@ -7,19 +7,15 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
-import android.widget.EditText
-import android.widget.Toast
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.expensestracker.R
 import com.example.expensestracker.adapters.MonthsAdapter
 import com.example.expensestracker.data.models.Month
 import com.example.expensestracker.databinding.FragmentMonthsBinding
+import com.example.expensestracker.dialogs.AddMonthDialog
 import com.example.expensestracker.fragments.delegates.viewBinding
 import com.example.expensestracker.viewmodel.MonthsViewModel
-import com.google.android.material.bottomsheet.BottomSheetDialog
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -51,26 +47,8 @@ class MonthsFragment : Fragment() {
 
     private fun setupFAB() {
         binding.addMonthFloatingActionButton.setOnClickListener {
-            val dialog = BottomSheetDialog(requireContext())
-            val view = layoutInflater.inflate(R.layout.add_month_dialog, null)
-            val button = view.findViewById<Button>(R.id.createMonthButton)
-            val editText = view.findViewById<EditText>(R.id.monthNameEditText)
-
-            dialog.setContentView(view)
-            dialog.show()
-
-            button.setOnClickListener {
-                val monthName = editText.text.toString()
-                if (monthName.isNotEmpty()) {
-                    val newMonth = Month(0, monthName, 0)
-                    viewModel.addMonth(newMonth)
-                    dialog.dismiss()
-                } else {
-                    Toast.makeText(context, "Month name is required!", Toast.LENGTH_SHORT)
-                        .show()
-                    editText.requestFocus()
-                }
-            }
+            val addMonthDialog = AddMonthDialog(it.context, viewModel)
+            addMonthDialog.showDialog()
         }
     }
 

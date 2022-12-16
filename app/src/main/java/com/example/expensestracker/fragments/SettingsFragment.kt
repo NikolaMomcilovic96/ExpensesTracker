@@ -49,7 +49,7 @@ class SettingsFragment : Fragment() {
         sharedPreferences =
             context?.getSharedPreferences("sharedPref", Context.MODE_PRIVATE)!!
         val spinner = spinner
-        val options = arrayOf("EUR", "USD", "RSD")
+        val options = arrayOf("RSD", "USD", "EUR")
         spinner.adapter =
             ArrayAdapter(spinner.context, android.R.layout.simple_list_item_1, options)
 
