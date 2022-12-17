@@ -1,6 +1,5 @@
 package com.example.expensestracker.fragments
 
-import android.annotation.SuppressLint
 import android.content.Context
 import android.content.SharedPreferences
 import android.os.Bundle
@@ -86,7 +85,6 @@ class ExpensesFragment : Fragment(), ExpensesAdapter.ExpenseClickListener {
         }
     }
 
-    @SuppressLint("InflateParams")
     private fun setupAddExpenseFAB() = with(binding) {
         addExpenseFloatingActionButton.setOnClickListener {
             val addExpenseDialog = AddExpenseDialog(it.context, viewModel, args.monthId)
@@ -99,6 +97,7 @@ class ExpensesFragment : Fragment(), ExpensesAdapter.ExpenseClickListener {
             val editMonthDialog = EditMonthDialog(
                 it.context,
                 viewModel,
+                args.monthName,
                 args.monthId,
                 args.total,
                 monthDetailsNameTextView,

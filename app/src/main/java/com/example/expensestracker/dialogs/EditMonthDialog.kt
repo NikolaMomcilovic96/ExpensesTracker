@@ -15,6 +15,7 @@ import com.google.android.material.bottomsheet.BottomSheetDialog
 class EditMonthDialog(
     context: Context,
     private val viewModel: MonthsViewModel,
+    private val monthName: String,
     private val monthId: Int,
     private val total: Int,
     private val monthDetailsNameTextView: TextView,
@@ -40,6 +41,8 @@ class EditMonthDialog(
     }
 
     private fun configureSaveButton() = with(binding) {
+        monthNameEditText.setText(monthName)
+
         saveChangesButton.setOnClickListener {
             if (monthNameEditText.text.isNullOrEmpty()) {
                 Toast.makeText(it.context, "Month name is required!", Toast.LENGTH_SHORT).show()

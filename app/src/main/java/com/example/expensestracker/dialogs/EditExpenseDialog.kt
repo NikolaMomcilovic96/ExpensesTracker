@@ -34,6 +34,9 @@ class EditExpenseDialog(
     }
 
     private fun configureSaveButton() = with(binding) {
+        expenseNameDetailEditText.setText(expense.title)
+        expenseValueDetailEditText.setText(expense.price.toString())
+
         saveButton.setOnClickListener {
             val title = expenseNameDetailEditText.text.toString()
             val value = expenseValueDetailEditText.text.toString()
