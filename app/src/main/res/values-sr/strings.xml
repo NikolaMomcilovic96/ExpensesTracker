@@ -25,4 +25,8 @@
     <string name="app_currency">Valuta aplikacije</string>
     <string name="months">Meseci</string>
     <string name="delete_all_data">Ukloni sve podatke</string>
+    <string name="no_current_tasks">Dodaj prvi task</string>
+    <string name="to_buy">Za kupovinu</string>
+    <string name="bought">Kupljeno</string>
+    <string name="todo">ToDo</string>
 </resources>
