@@ -6,6 +6,10 @@
         android:icon="@drawable/baseline_calendar_month_24"
         android:title="@string/months" />
     <item
+        android:id="@+id/navigation_to_do"
+        android:icon="@drawable/baseline_check_box_24"
+        android:title="@string/todo" />
+    <item
         android:id="@+id/navigation_settings"
         android:icon="@drawable/baseline_settings_24"
         android:title="@string/settings" />

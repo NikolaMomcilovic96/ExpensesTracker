@@ -25,4 +25,8 @@
     <string name="app_currency">App currency</string>
     <string name="months">Months</string>
     <string name="delete_all_data">Delete all data</string>
+    <string name="no_current_tasks">No current tasks</string>
+    <string name="to_buy">To Buy</string>
+    <string name="bought">Bought</string>
+    <string name="todo">ToDo</string>
 </resources>
