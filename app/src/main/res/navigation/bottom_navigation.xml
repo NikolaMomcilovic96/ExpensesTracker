@@ -5,6 +5,5 @@
     app:startDestination="@id/navigation_months">
 
     <include app:graph="@navigation/navigation_months" />
-    <include app:graph="@navigation/navigation_to_do" />
     <include app:graph="@navigation/navigation_settings" />
 </navigation>

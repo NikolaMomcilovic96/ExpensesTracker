@@ -11,8 +11,6 @@ import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import android.widget.Toast
 import androidx.fragment.app.viewModels
-import androidx.navigation.Navigation
-import com.example.expensestracker.R
 import com.example.expensestracker.databinding.FragmentSettingsBinding
 import com.example.expensestracker.fragments.delegates.viewBinding
 import com.example.expensestracker.viewmodel.MonthsViewModel
@@ -40,8 +38,6 @@ class SettingsFragment : Fragment() {
         deleteAllDataButton.setOnClickListener {
             viewModel.deleteAllData()
             Toast.makeText(it.context, "All data is deleted", Toast.LENGTH_SHORT).show()
-            Navigation.findNavController(it)
-                .navigate(R.id.action_settingsFragment_to_navigation_months)
         }
     }
 
