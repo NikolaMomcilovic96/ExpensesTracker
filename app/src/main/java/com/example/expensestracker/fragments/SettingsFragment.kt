@@ -27,7 +27,6 @@ class SettingsFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        configureLanguageSwitch()
         configureCurrencySpinner()
         configureDeleteButton()
 
@@ -44,7 +43,7 @@ class SettingsFragment : Fragment() {
     private fun configureCurrencySpinner() = with(binding) {
         sharedPreferences =
             context?.getSharedPreferences("sharedPref", Context.MODE_PRIVATE)!!
-        val spinner = spinner
+        val spinner = currencySpinner
         val options = arrayOf("RSD", "USD", "EUR")
         spinner.adapter =
             ArrayAdapter(spinner.context, android.R.layout.simple_list_item_1, options)
@@ -77,16 +76,6 @@ class SettingsFragment : Fragment() {
 
             override fun onItemClick(p0: AdapterView<*>?, p1: View?, p2: Int, p3: Long) {
                 TODO("Not yet implemented")
-            }
-        }
-    }
-
-    private fun configureLanguageSwitch() = with(binding) {
-        languageSwitch.setOnClickListener {
-            if (languageSwitch.isChecked) {
-                TODO("Nzm kako")
-            } else {
-                TODO("Nzm kako")
             }
         }
     }
