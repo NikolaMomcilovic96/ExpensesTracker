@@ -1,7 +1,7 @@
 package com.example.expensestracker.adapters
 
 import androidx.recyclerview.widget.RecyclerView
-import com.example.expensestracker.data.models.Expense
+import com.example.expensestracker.data.database.models.Expense
 import com.example.expensestracker.databinding.ExpenseItemBinding
 
 class ExpensesViewHolder(

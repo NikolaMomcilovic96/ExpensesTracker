@@ -1,8 +1,9 @@
 package com.example.expensestracker.data.repository
 
 import com.example.expensestracker.data.database.MonthsDao
-import com.example.expensestracker.data.models.Expense
-import com.example.expensestracker.data.models.Month
+import com.example.expensestracker.data.database.models.Expense
+import com.example.expensestracker.data.database.models.Month
+import com.example.expensestracker.data.database.repository.MonthsRepositoryDBImpl
 import kotlinx.coroutines.runBlocking
 import org.junit.Assert
 import org.junit.Before
@@ -13,12 +14,12 @@ import org.mockito.kotlin.times
 import org.mockito.kotlin.verify
 
 class MonthRepositoryImplTest {
-    private lateinit var monthRepositoryImpl: MonthsRepositoryImpl
+    private lateinit var monthRepositoryImpl: MonthsRepositoryDBImpl
     private var monthsDaoMock: MonthsDao = mock()
 
     @Before
     fun setup() {
-        monthRepositoryImpl = MonthsRepositoryImpl(monthsDaoMock)
+        monthRepositoryImpl = MonthsRepositoryDBImpl(monthsDaoMock)
     }
 
     @Test

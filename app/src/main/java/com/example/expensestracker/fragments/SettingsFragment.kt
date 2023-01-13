@@ -28,9 +28,23 @@ class SettingsFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         configureCurrencySpinner()
+        configureSyncButton()
         configureDeleteButton()
+        configureGetData()
 
         return binding.root
+    }
+
+    private fun configureSyncButton() = with(binding) {
+        backupButton.setOnClickListener {
+            viewModel.syncAllData(requireContext())
+        }
+    }
+
+    private fun configureGetData() = with(binding) {
+        getDataButton.setOnClickListener {
+            viewModel.getYourData(requireContext())
+        }
     }
 
     private fun configureDeleteButton() = with(binding) {

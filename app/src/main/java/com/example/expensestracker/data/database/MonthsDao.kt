@@ -2,10 +2,10 @@ package com.example.expensestracker.data.database
 
 import androidx.room.Dao
 import androidx.room.Insert
-import androidx.room.OnConflictStrategy.REPLACE
+import androidx.room.OnConflictStrategy.Companion.REPLACE
 import androidx.room.Query
-import com.example.expensestracker.data.models.Expense
-import com.example.expensestracker.data.models.Month
+import com.example.expensestracker.data.database.models.Expense
+import com.example.expensestracker.data.database.models.Month
 
 @Dao
 interface MonthsDao {

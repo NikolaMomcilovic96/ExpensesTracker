@@ -53,15 +53,35 @@
                 app:layout_constraintTop_toTopOf="@+id/currencyTextView" />
 
             <Button
+                android:id="@+id/backupButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="30dp"
+                android:text="@string/backup_data"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/currencyTextView" />
+
+            <Button
+                android:id="@+id/getDataButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="30dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                android:text="@string/get_data_from_server"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/backupButton" />
+
+            <Button
                 android:id="@+id/deleteAllDataButton"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="50dp"
+                android:layout_marginTop="30dp"
                 android:text="@string/delete_all_data"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/currencyTextView" />
+                app:layout_constraintTop_toBottomOf="@+id/getDataButton" />
 
 
         </androidx.constraintlayout.widget.ConstraintLayout>

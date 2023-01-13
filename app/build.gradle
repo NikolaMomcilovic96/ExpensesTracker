@@ -5,6 +5,7 @@ plugins {
     id 'kotlin-kapt'
     id 'dagger.hilt.android.plugin'
     id 'androidx.navigation.safeargs.kotlin'
+    id 'com.google.gms.google-services'
 }
 
 android {
@@ -47,21 +48,24 @@ android {
 
 ext {
     kotlinVersion = '1.9.0'
-    appcompatVersion = '1.5.1'
+    appcompatVersion = '1.6.0'
     materialVersion = '1.7.0'
     constraintLayoutVersion = '2.1.4'
     hiltVersion = '2.42'
     hiltCompilerVersion = '1.0.0'
-    roomVersion = '2.4.3'
+    roomVersion = '2.5.0'
     retrofitVersion = '2.9.0'
     mockitoVersion = '4.8.0'
     mockitoKotlinVersion = '4.0.0'
     mockkVersion = '1.13.2'
     junitVersion = '4.13.2'
-    junitTestVersion = '1.1.4'
+    junitTestVersion = '1.1.5'
     navigationVersion = '2.5.3'
-    espressoCoreVersion = '3.5.0'
+    espressoCoreVersion = '3.5.1'
     glideVersion = '4.12.0'
+    retrofitVersion = '2.9.0'
+    gsonVersion = '2.9.1'
+    firebaseVersion = '20.1.0'
 }
 
 dependencies {
@@ -87,4 +91,10 @@ dependencies {
     testImplementation "org.mockito:mockito-core:${mockitoVersion}"
     testImplementation "org.mockito.kotlin:mockito-kotlin:${mockitoKotlinVersion}"
     implementation "com.github.bumptech.glide:glide:$glideVersion"
+    implementation "com.squareup.retrofit2:retrofit:${retrofitVersion}"
+    implementation "com.squareup.retrofit2:converter-gson:${retrofitVersion}"
+    implementation "com.google.code.gson:gson:${gsonVersion}"
+    implementation "com.google.firebase:firebase-database:${firebaseVersion}"
+    implementation "com.google.firebase:firebase-database-ktx:${firebaseVersion}"
+    implementation platform('com.google.firebase:firebase-bom:31.1.1')
 }

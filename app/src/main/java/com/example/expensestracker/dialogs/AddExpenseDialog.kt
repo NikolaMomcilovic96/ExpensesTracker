@@ -4,7 +4,7 @@ import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.widget.Toast
-import com.example.expensestracker.data.models.Expense
+import com.example.expensestracker.data.database.models.Expense
 import com.example.expensestracker.databinding.AddExpenseDialogBinding
 import com.example.expensestracker.viewmodel.MonthsViewModel
 import com.google.android.material.bottomsheet.BottomSheetDialog
