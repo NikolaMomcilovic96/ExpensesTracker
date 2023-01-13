@@ -4,7 +4,7 @@ ExpensesTracker is the app made for tracking expenses of users.
 
 User can change the currency that expenses are going to be saved in.
 
-All data is stored on devices localy and nobody can access it remotely.
+All data is stored on devices locally and nobody can access it remotely.
 
 All data can be backed up on Firebase server but only if user clicks the button to do that.
 
