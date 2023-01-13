@@ -12,7 +12,7 @@ import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.expensestracker.adapters.ExpensesAdapter
-import com.example.expensestracker.data.models.Expense
+import com.example.expensestracker.data.database.models.Expense
 import com.example.expensestracker.databinding.FragmentExpensesBinding
 import com.example.expensestracker.dialogs.AddExpenseDialog
 import com.example.expensestracker.dialogs.EditExpenseDialog

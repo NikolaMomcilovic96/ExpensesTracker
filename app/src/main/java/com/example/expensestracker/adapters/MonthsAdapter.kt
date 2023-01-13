@@ -3,7 +3,7 @@ package com.example.expensestracker.adapters
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.example.expensestracker.data.models.Month
+import com.example.expensestracker.data.database.models.Month
 import com.example.expensestracker.databinding.MonthItemBinding
 
 class MonthsAdapter(

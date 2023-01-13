@@ -1,7 +1,7 @@
 package com.example.expensestracker.adapters
 
 import androidx.recyclerview.widget.RecyclerView
-import com.example.expensestracker.data.models.Month
+import com.example.expensestracker.data.database.models.Month
 import com.example.expensestracker.databinding.MonthItemBinding
 
 class MonthsViewHolder(
