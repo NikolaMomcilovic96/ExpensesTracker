@@ -37,7 +37,7 @@ class SettingsFragment : Fragment() {
 
     private fun configureSyncButton() = with(binding) {
         backupButton.setOnClickListener {
-            viewModel.syncAllData(requireContext())
+            viewModel.backupData(requireContext())
         }
     }
 

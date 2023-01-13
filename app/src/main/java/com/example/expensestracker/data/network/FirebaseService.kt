@@ -1,6 +1,7 @@
 package com.example.expensestracker.data.network
 
-import com.example.expensestracker.data.network.models.RestMonth
+import com.example.expensestracker.domain.models.Expense
+import com.example.expensestracker.domain.models.Month
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import retrofit2.create
@@ -10,15 +11,20 @@ import retrofit2.http.GET
 import retrofit2.http.PUT
 
 interface FirebaseService {
-
-    @PUT("data.json")
-    suspend fun backupData(@Body data: List<RestMonth>): List<RestMonth>
-
     @DELETE("data.json")
-    suspend fun deleteAllData(@Body data: List<RestMonth>)
+    suspend fun deleteAllData()
 
-    @GET("data.json")
-    suspend fun getYourData(): List<RestMonth>
+    @GET("months.json")
+    suspend fun getYourMonths(): List<Month>
+
+    @GET("expenses.json")
+    suspend fun getYourExpenses(): List<Expense>
+
+    @PUT("months.json")
+    suspend fun backupMonths(@Body months: List<Month>): List<Month>
+
+    @PUT("expenses.json")
+    suspend fun backupExpenses(@Body expenses: List<Expense>): List<Expense>
 
     companion object {
         fun getInstance(): FirebaseService {

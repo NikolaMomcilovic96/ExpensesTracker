@@ -3,8 +3,8 @@ package com.example.expensestracker.adapters
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.example.expensestracker.data.database.models.Expense
 import com.example.expensestracker.databinding.ExpenseItemBinding
+import com.example.expensestracker.domain.models.Expense
 
 class ExpensesAdapter(
     private val expenseClickListener: ExpenseClickListener
