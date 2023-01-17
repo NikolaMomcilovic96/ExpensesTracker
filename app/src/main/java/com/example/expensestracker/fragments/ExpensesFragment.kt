@@ -100,12 +100,10 @@ class ExpensesFragment : Fragment(), ExpensesAdapter.ExpenseClickListener {
                 args.monthName,
                 args.monthId,
                 args.total,
-                monthDetailsNameTextView
+                monthDetailsNameTextView,
+                findNavController()
             )
             editMonthDialog.showDialog()
-            editMonthDialog.setOnDismissListener {
-                findNavController().popBackStack()
-            }
         }
     }
 
