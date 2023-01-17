@@ -40,7 +40,7 @@ class AddExpenseDialog(
                 Toast.makeText(context, "All fields are required!", Toast.LENGTH_SHORT).show()
             } else {
                 val newExpense = Expense(0, monthId, title, value.toInt())
-                viewModel.addExpense(newExpense)
+                viewModel.addExpense(context, newExpense)
                 dismiss()
             }
         }

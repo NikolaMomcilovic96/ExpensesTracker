@@ -2,10 +2,8 @@ package com.example.expensestracker.viewmodel
 
 import android.content.Context
 import androidx.lifecycle.*
-import com.example.expensestracker.di.qualifier.DB
 import com.example.expensestracker.domain.models.Expense
 import com.example.expensestracker.domain.models.Month
-import com.example.expensestracker.domain.repository.MonthsRepository
 import com.example.expensestracker.domain.usecases.MonthsUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
@@ -13,7 +11,6 @@ import javax.inject.Inject
 
 @HiltViewModel
 class MonthsViewModel @Inject constructor(
-    @DB private val dbRepository: MonthsRepository,
     private val monthsUseCase: MonthsUseCase
 ) : ViewModel() {
 
@@ -34,55 +31,55 @@ class MonthsViewModel @Inject constructor(
 
     fun getMonths() {
         viewModelScope.launch {
-            val result = dbRepository.getMonths()
+            val result = monthsUseCase.getMonths()
             _months.postValue(result)
         }
     }
 
-    fun addMonth(month: Month) {
+    fun addMonth(month: Month, context: Context) {
         viewModelScope.launch {
-            dbRepository.addMonth(month)
+            monthsUseCase.addNewMonth(context, month)
             getMonths()
         }
     }
 
     fun deleteMonth(monthId: Int) {
         viewModelScope.launch {
-            dbRepository.deleteMonth(monthId)
+            monthsUseCase.deleteMonth(monthId)
             getMonths()
         }
     }
 
     fun updateMonth(monthId: Int, name: String, total: Int) {
         viewModelScope.launch {
-            dbRepository.updateMonth(monthId, name, total)
+            monthsUseCase.updateMonth(monthId, name, total)
         }
     }
 
     fun getExpenses(monthId: Int) {
         viewModelScope.launch {
-            val result = dbRepository.getExpenses(monthId)
+            val result = monthsUseCase.getMonthlyExpenses(monthId)
             _expenses.postValue(result)
         }
     }
 
-    fun addExpense(expense: Expense) {
+    fun addExpense(context: Context, expense: Expense) {
         viewModelScope.launch {
-            dbRepository.addExpense(expense)
+            monthsUseCase.addNewExpense(context, expense)
             getExpenses(expense.monthId)
         }
     }
 
     fun deleteExpense(expense: Expense) {
         viewModelScope.launch {
-            dbRepository.deleteExpense(expense.id)
+            monthsUseCase.deleteExpense(expense.id)
             getExpenses(expense.monthId)
         }
     }
 
     fun updateExpense(expense: Expense) {
         viewModelScope.launch {
-            dbRepository.updateExpense(expense.id, expense.title, expense.price)
+            monthsUseCase.updateExpense(expense)
             getExpenses(expense.monthId)
         }
     }
@@ -103,21 +100,23 @@ class MonthsViewModel @Inject constructor(
                     expenses.add(e)
                 }
             }
-            monthsUseCase.testBackup(months, expenses, context)
+            monthsUseCase.backupData(months, expenses, context)
         }
     }
 
     fun getYourData(context: Context) {
         viewModelScope.launch {
+            monthsUseCase.getYourData(context)
+            getMonths()
             val data = monthsUseCase.getYourData(context)
             for (m in data.first) {
                 val month = Month(m.id, m.name, m.total)
-                dbRepository.addMonth(month)
+                monthsUseCase.addMonthToDb(month)
                 getMonths()
             }
             for (e in data.second) {
                 val expense = Expense(e.id, e.monthId, e.title, e.price)
-                dbRepository.addExpense(expense)
+                monthsUseCase.addExpenseToDb(expense)
                 getExpenses(e.monthId)
             }
         }

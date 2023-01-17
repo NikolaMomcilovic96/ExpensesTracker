@@ -37,7 +37,7 @@ class AddMonthDialog(
             val monthName = monthNameEditText.text.toString()
             if (monthName.isNotEmpty()) {
                 val newMonth = Month(0, monthName, 0)
-                viewModel.addMonth(newMonth)
+                viewModel.addMonth(newMonth, context)
                 dismiss()
             } else {
                 Toast.makeText(context, "Month name is required!", Toast.LENGTH_SHORT)

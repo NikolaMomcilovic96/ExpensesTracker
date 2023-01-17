@@ -9,11 +9,17 @@ import javax.inject.Inject
 class MonthsRepositoryNetworkImpl @Inject constructor(private val firebaseService: FirebaseService) :
     MonthsRepository {
     override suspend fun getMonths(): List<Month> {
-        throw UnsupportedOperationException()
+        return firebaseService.getYourMonths()
     }
 
     override suspend fun addMonth(month: Month) {
-        throw UnsupportedOperationException()
+        val months = mutableListOf<Month>()
+        val currentMonths = getMonths()
+        for (m in currentMonths) {
+            months.add(m)
+        }
+        months.add(month)
+        firebaseService.backupMonths(months)
     }
 
     override suspend fun deleteMonth(monthId: Int) {

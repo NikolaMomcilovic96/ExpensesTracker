@@ -48,13 +48,69 @@ class MonthsUseCase @Inject constructor(
         return Pair(months, expenses)
     }
 
-    suspend fun testBackup(months: List<Month>, expenses: List<Expense>, context: Context) {
+    suspend fun backupData(months: List<Month>, expenses: List<Expense>, context: Context) {
         if (networkConnectionService.isOnline()) {
             restRepository.backupData(months, expenses)
             syncedToast(context)
         } else {
             internetRequiredToast(context)
         }
+    }
+
+    suspend fun addMonthToDb(month: Month) {
+        dbRepository.addMonth(month)
+    }
+
+    suspend fun addExpenseToDb(expense: Expense) {
+        dbRepository.addExpense(expense)
+    }
+
+    suspend fun addNewMonth(context: Context, month: Month) {
+        val sharedPreferences =
+            context.getSharedPreferences("sharedPref", Context.MODE_PRIVATE)
+        val autoBackup = sharedPreferences.getBoolean("autoBackup", false)
+        if (autoBackup) {
+            if (networkConnectionService.isOnline()) {
+                restRepository.addMonth(month)
+            } else {
+                internetRequiredToast(context)
+            }
+        }
+        dbRepository.addMonth(month)
+    }
+
+    suspend fun addNewExpense(context: Context, expense: Expense) {
+        val sharedPreferences =
+            context.getSharedPreferences("sharedPref", Context.MODE_PRIVATE)
+        val autoBackup = sharedPreferences.getBoolean("autoBackup", false)
+        if (autoBackup) {
+            if (networkConnectionService.isOnline()) {
+                restRepository.addExpense(expense)
+            } else {
+                internetRequiredToast(context)
+            }
+        }
+        dbRepository.addExpense(expense)
+    }
+
+    suspend fun deleteMonth(monthId: Int) {
+        dbRepository.deleteMonth(monthId)
+    }
+
+    suspend fun deleteExpense(expenseId: Int) {
+        dbRepository.deleteExpense(expenseId)
+    }
+
+    suspend fun getMonthlyExpenses(monthId: Int): List<Expense> {
+        return dbRepository.getExpenses(monthId)
+    }
+
+    suspend fun updateMonth(monthId: Int, name: String, total: Int) {
+        dbRepository.updateMonth(monthId, name, total)
+    }
+
+    suspend fun updateExpense(expense: Expense) {
+        dbRepository.updateExpense(expense.id, expense.title, expense.price)
     }
 
     private fun syncedToast(context: Context) {
