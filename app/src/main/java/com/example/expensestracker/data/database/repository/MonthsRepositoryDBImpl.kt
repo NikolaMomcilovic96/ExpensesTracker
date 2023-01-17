@@ -1,9 +1,8 @@
 package com.example.expensestracker.data.database.repository
 
 import com.example.expensestracker.data.database.MonthsDao
-import com.example.expensestracker.data.database.models.Expense
-import com.example.expensestracker.data.database.models.Month
-import com.example.expensestracker.data.network.models.RestMonth
+import com.example.expensestracker.domain.models.Expense
+import com.example.expensestracker.domain.models.Month
 import com.example.expensestracker.domain.repository.MonthsRepository
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
@@ -48,11 +47,11 @@ class MonthsRepositoryDBImpl @Inject constructor(private val monthsDao: MonthsDa
         monthsDao.deleteAllMonths()
     }
 
-    override suspend fun backupData(data: List<RestMonth>) {
+    override suspend fun backupData(months: List<Month>, expenses: List<Expense>) {
         throw UnsupportedOperationException()
     }
 
-    override suspend fun getYourData(): List<RestMonth> {
+    override suspend fun getYourData(): Pair<List<Month>, List<Expense>> {
         throw UnsupportedOperationException()
     }
 }

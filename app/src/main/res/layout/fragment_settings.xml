@@ -32,7 +32,6 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
-
             <TextView
                 android:id="@+id/currencyTextView"
                 android:layout_width="wrap_content"
@@ -52,23 +51,45 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="@+id/currencyTextView" />
 
+
+            <TextView
+                android:id="@+id/autoBackupTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="30dp"
+                android:text="@string/auto_backup"
+                android:textSize="20sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/currencyTextView" />
+
+            <androidx.appcompat.widget.SwitchCompat
+                android:id="@+id/autoBackupSwitch"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="20dp"
+                android:theme="@style/SwitchCompat"
+                app:layout_constraintBottom_toBottomOf="@+id/autoBackupTextView"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/autoBackupTextView" />
+
             <Button
                 android:id="@+id/backupButton"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="30dp"
-                android:text="@string/backup_data"
+                android:text="@string/backup_data_now"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/currencyTextView" />
+                app:layout_constraintTop_toBottomOf="@+id/autoBackupTextView" />
 
             <Button
                 android:id="@+id/getDataButton"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="30dp"
-                app:layout_constraintEnd_toEndOf="parent"
                 android:text="@string/get_data_from_server"
+                app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/backupButton" />
 
@@ -82,7 +103,6 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/getDataButton" />
-
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </ScrollView>

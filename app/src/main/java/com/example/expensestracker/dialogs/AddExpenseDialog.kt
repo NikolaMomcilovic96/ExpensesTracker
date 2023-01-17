@@ -4,8 +4,8 @@ import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.widget.Toast
-import com.example.expensestracker.data.database.models.Expense
 import com.example.expensestracker.databinding.AddExpenseDialogBinding
+import com.example.expensestracker.domain.models.Expense
 import com.example.expensestracker.viewmodel.MonthsViewModel
 import com.google.android.material.bottomsheet.BottomSheetDialog
 
@@ -40,7 +40,7 @@ class AddExpenseDialog(
                 Toast.makeText(context, "All fields are required!", Toast.LENGTH_SHORT).show()
             } else {
                 val newExpense = Expense(0, monthId, title, value.toInt())
-                viewModel.addExpense(newExpense)
+                viewModel.addExpense(context, newExpense)
                 dismiss()
             }
         }

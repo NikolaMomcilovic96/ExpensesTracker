@@ -3,8 +3,8 @@ package com.example.expensestracker.adapters
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.example.expensestracker.data.database.models.Month
 import com.example.expensestracker.databinding.MonthItemBinding
+import com.example.expensestracker.domain.models.Month
 
 class MonthsAdapter(
     private val onUserClicked: (Month) -> Unit

@@ -1,15 +1,9 @@
 package com.example.expensestracker.viewmodel
 
 import android.content.Context
-import android.widget.Toast
 import androidx.lifecycle.*
-import com.example.expensestracker.data.database.models.Expense
-import com.example.expensestracker.data.database.models.Month
-import com.example.expensestracker.data.network.models.RestMonth
-import com.example.expensestracker.di.qualifier.DB
-import com.example.expensestracker.domain.mappers.network.RestMonthMapper
-import com.example.expensestracker.domain.repository.MonthsRepository
-import com.example.expensestracker.domain.services.NetworkConnectionService
+import com.example.expensestracker.domain.models.Expense
+import com.example.expensestracker.domain.models.Month
 import com.example.expensestracker.domain.usecases.MonthsUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
@@ -17,9 +11,6 @@ import javax.inject.Inject
 
 @HiltViewModel
 class MonthsViewModel @Inject constructor(
-    @DB private val dbRepository: MonthsRepository,
-    private val networkConnectionService: NetworkConnectionService,
-    private val restMonthMapper: RestMonthMapper,
     private val monthsUseCase: MonthsUseCase
 ) : ViewModel() {
 
@@ -40,55 +31,55 @@ class MonthsViewModel @Inject constructor(
 
     fun getMonths() {
         viewModelScope.launch {
-            val result = dbRepository.getMonths()
+            val result = monthsUseCase.getMonths()
             _months.postValue(result)
         }
     }
 
-    fun addMonth(month: Month) {
+    fun addMonth(month: Month, context: Context) {
         viewModelScope.launch {
-            dbRepository.addMonth(month)
+            monthsUseCase.addNewMonth(context, month)
             getMonths()
         }
     }
 
     fun deleteMonth(monthId: Int) {
         viewModelScope.launch {
-            dbRepository.deleteMonth(monthId)
+            monthsUseCase.deleteMonth(monthId)
             getMonths()
         }
     }
 
     fun updateMonth(monthId: Int, name: String, total: Int) {
         viewModelScope.launch {
-            dbRepository.updateMonth(monthId, name, total)
+            monthsUseCase.updateMonth(monthId, name, total)
         }
     }
 
     fun getExpenses(monthId: Int) {
         viewModelScope.launch {
-            val result = dbRepository.getExpenses(monthId)
+            val result = monthsUseCase.getMonthlyExpenses(monthId)
             _expenses.postValue(result)
         }
     }
 
-    fun addExpense(expense: Expense) {
+    fun addExpense(context: Context, expense: Expense) {
         viewModelScope.launch {
-            dbRepository.addExpense(expense)
+            monthsUseCase.addNewExpense(context, expense)
             getExpenses(expense.monthId)
         }
     }
 
     fun deleteExpense(expense: Expense) {
         viewModelScope.launch {
-            dbRepository.deleteExpense(expense.id)
+            monthsUseCase.deleteExpense(expense.id)
             getExpenses(expense.monthId)
         }
     }
 
     fun updateExpense(expense: Expense) {
         viewModelScope.launch {
-            dbRepository.updateExpense(expense.id, expense.title, expense.price)
+            monthsUseCase.updateExpense(expense)
             getExpenses(expense.monthId)
         }
     }
@@ -99,52 +90,35 @@ class MonthsViewModel @Inject constructor(
         }
     }
 
-    fun syncAllData(context: Context) {
+    fun backupData(context: Context) {
         viewModelScope.launch {
-            if (networkConnectionService.isOnline()) {
-                val data = mutableListOf<RestMonth>()
-                val months = monthsUseCase.getMonths()
-                for (m in months) {
-                    val monthlyExpenses = monthsUseCase.getExpenses(m.id)
-                    val month = restMonthMapper.map(m, monthlyExpenses)
-                    data.add(month)
+            val months = monthsUseCase.getMonths()
+            val expenses = mutableListOf<Expense>()
+            for (m in months) {
+                val monthlyExpenses = monthsUseCase.getExpenses(m.id)
+                for (e in monthlyExpenses) {
+                    expenses.add(e)
                 }
-                monthsUseCase.backupData(data)
-                syncedToast(context)
-            } else {
-                internetRequiredToast(context)
             }
+            monthsUseCase.backupData(months, expenses, context)
         }
     }
 
     fun getYourData(context: Context) {
         viewModelScope.launch {
-            if (networkConnectionService.isOnline()) {
-                val data = monthsUseCase.getYourData()
-                for (d in data) {
-                    val month = Month(d.id, d.name, d.total)
-                    dbRepository.addMonth(month)
-                    getMonths()
-                    if (d.expenses?.isEmpty() == false) {
-                        for (e in d.expenses) {
-                            val expense = Expense(e.id, e.monthId, e.title, e.price)
-                            dbRepository.addExpense(expense)
-                            getExpenses(d.id)
-                        }
-                    }
-                }
-                syncedToast(context)
-            } else {
-                internetRequiredToast(context)
+            monthsUseCase.getYourData(context)
+            getMonths()
+            val data = monthsUseCase.getYourData(context)
+            for (m in data.first) {
+                val month = Month(m.id, m.name, m.total)
+                monthsUseCase.addMonthToDb(month)
+                getMonths()
+            }
+            for (e in data.second) {
+                val expense = Expense(e.id, e.monthId, e.title, e.price)
+                monthsUseCase.addExpenseToDb(expense)
+                getExpenses(e.monthId)
             }
         }
-    }
-
-    private fun syncedToast(context: Context) {
-        Toast.makeText(context, "All data is synced", Toast.LENGTH_SHORT).show()
-    }
-
-    private fun internetRequiredToast(context: Context) {
-        Toast.makeText(context, "Internet connection is required", Toast.LENGTH_SHORT).show()
     }
 }

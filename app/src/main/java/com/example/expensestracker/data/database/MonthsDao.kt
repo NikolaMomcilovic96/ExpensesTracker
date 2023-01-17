@@ -4,8 +4,8 @@ import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy.Companion.REPLACE
 import androidx.room.Query
-import com.example.expensestracker.data.database.models.Expense
-import com.example.expensestracker.data.database.models.Month
+import com.example.expensestracker.domain.models.Expense
+import com.example.expensestracker.domain.models.Month
 
 @Dao
 interface MonthsDao {

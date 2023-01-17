@@ -31,13 +31,14 @@ class SettingsFragment : Fragment() {
         configureSyncButton()
         configureDeleteButton()
         configureGetData()
+        configureAutoBackup()
 
         return binding.root
     }
 
     private fun configureSyncButton() = with(binding) {
         backupButton.setOnClickListener {
-            viewModel.syncAllData(requireContext())
+            viewModel.backupData(requireContext())
         }
     }
 
@@ -87,10 +88,20 @@ class SettingsFragment : Fragment() {
                 TODO("Not yet implemented")
             }
 
-
             override fun onItemClick(p0: AdapterView<*>?, p1: View?, p2: Int, p3: Long) {
                 TODO("Not yet implemented")
             }
+        }
+    }
+
+    private fun configureAutoBackup() = with(binding) {
+        sharedPreferences =
+            context?.getSharedPreferences("sharedPref", Context.MODE_PRIVATE)!!
+        var autoBackup = sharedPreferences.getBoolean("autoBackup", false)
+        autoBackupSwitch.isChecked = autoBackup
+        autoBackupSwitch.setOnClickListener {
+            autoBackup = !autoBackup
+            sharedPreferences.edit().putBoolean("autoBackup", autoBackup).apply()
         }
     }
 }

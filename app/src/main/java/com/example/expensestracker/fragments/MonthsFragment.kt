@@ -11,9 +11,9 @@ import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.expensestracker.adapters.MonthsAdapter
-import com.example.expensestracker.data.database.models.Month
 import com.example.expensestracker.databinding.FragmentMonthsBinding
 import com.example.expensestracker.dialogs.AddMonthDialog
+import com.example.expensestracker.domain.models.Month
 import com.example.expensestracker.fragments.delegates.viewBinding
 import com.example.expensestracker.viewmodel.MonthsViewModel
 import dagger.hilt.android.AndroidEntryPoint

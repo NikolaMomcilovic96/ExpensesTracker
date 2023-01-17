@@ -12,11 +12,11 @@ import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.expensestracker.adapters.ExpensesAdapter
-import com.example.expensestracker.data.database.models.Expense
 import com.example.expensestracker.databinding.FragmentExpensesBinding
 import com.example.expensestracker.dialogs.AddExpenseDialog
 import com.example.expensestracker.dialogs.EditExpenseDialog
 import com.example.expensestracker.dialogs.EditMonthDialog
+import com.example.expensestracker.domain.models.Expense
 import com.example.expensestracker.fragments.delegates.viewBinding
 import com.example.expensestracker.viewmodel.MonthsViewModel
 import dagger.hilt.android.AndroidEntryPoint
@@ -100,10 +100,12 @@ class ExpensesFragment : Fragment(), ExpensesAdapter.ExpenseClickListener {
                 args.monthName,
                 args.monthId,
                 args.total,
-                monthDetailsNameTextView,
-                ExpensesFragment()
+                monthDetailsNameTextView
             )
             editMonthDialog.showDialog()
+            editMonthDialog.setOnDismissListener {
+                findNavController().popBackStack()
+            }
         }
     }
 

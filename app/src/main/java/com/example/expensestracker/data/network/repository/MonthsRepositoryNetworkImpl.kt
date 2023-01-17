@@ -1,20 +1,25 @@
 package com.example.expensestracker.data.network.repository
 
-import com.example.expensestracker.data.database.models.Expense
-import com.example.expensestracker.data.database.models.Month
 import com.example.expensestracker.data.network.FirebaseService
-import com.example.expensestracker.data.network.models.RestMonth
+import com.example.expensestracker.domain.models.Expense
+import com.example.expensestracker.domain.models.Month
 import com.example.expensestracker.domain.repository.MonthsRepository
 import javax.inject.Inject
 
 class MonthsRepositoryNetworkImpl @Inject constructor(private val firebaseService: FirebaseService) :
     MonthsRepository {
     override suspend fun getMonths(): List<Month> {
-        throw UnsupportedOperationException()
+        return firebaseService.getYourMonths()
     }
 
     override suspend fun addMonth(month: Month) {
-        throw UnsupportedOperationException()
+        val months = mutableListOf<Month>()
+        val currentMonths = getMonths()
+        for (m in currentMonths) {
+            months.add(m)
+        }
+        months.add(month)
+        firebaseService.backupMonths(months)
     }
 
     override suspend fun deleteMonth(monthId: Int) {
@@ -42,14 +47,17 @@ class MonthsRepositoryNetworkImpl @Inject constructor(private val firebaseServic
     }
 
     override suspend fun deleteAllData() {
-        firebaseService.deleteAllData(emptyList())
+        firebaseService.deleteAllData()
     }
 
-    override suspend fun backupData(data: List<RestMonth>) {
-        firebaseService.backupData(data)
+    override suspend fun backupData(months: List<Month>, expenses: List<Expense>) {
+        firebaseService.backupMonths(months)
+        firebaseService.backupExpenses(expenses)
     }
 
-    override suspend fun getYourData(): List<RestMonth> {
-        return firebaseService.getYourData()
+    override suspend fun getYourData(): Pair<List<Month>, List<Expense>> {
+        val months = firebaseService.getYourMonths()
+        val expenses = firebaseService.getYourExpenses()
+        return Pair(months, expenses)
     }
 }

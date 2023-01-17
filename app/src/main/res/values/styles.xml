@@ -15,4 +15,8 @@
     <style name="AppModalStyleDark" parent="Widget.Design.BottomSheet.Modal">
         <item name="android:background">@drawable/rounded_dialog_dark</item>
     </style>
+
+    <style name="SwitchCompat">
+        <item name="colorAccent">@color/green</item>
+    </style>
 </resources>

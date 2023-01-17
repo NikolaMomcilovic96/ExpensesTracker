@@ -1,8 +1,7 @@
 package com.example.expensestracker.domain.repository
 
-import com.example.expensestracker.data.database.models.Expense
-import com.example.expensestracker.data.database.models.Month
-import com.example.expensestracker.data.network.models.RestMonth
+import com.example.expensestracker.domain.models.Expense
+import com.example.expensestracker.domain.models.Month
 
 interface MonthsRepository {
     suspend fun getMonths(): List<Month>
@@ -23,7 +22,7 @@ interface MonthsRepository {
 
     suspend fun deleteAllData()
 
-    suspend fun backupData(data: List<RestMonth>)
+    suspend fun backupData(months: List<Month>, expenses: List<Expense>)
 
-    suspend fun getYourData(): List<RestMonth>
+    suspend fun getYourData(): Pair<List<Month>, List<Expense>>
 }
