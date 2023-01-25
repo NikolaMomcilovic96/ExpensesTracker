@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/navigation_groceries"
+    app:startDestination="@id/groceriesFragment">
+
+    <fragment
+        android:id="@+id/groceriesFragment"
+        android:name="com.example.expensestracker.fragments.GroceriesFragment"
+        android:label="fragment_groceries"
+        tools:layout="@layout/fragment_groceries" />
+</navigation>

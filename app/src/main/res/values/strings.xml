@@ -28,4 +28,6 @@
     <string name="backup_data_now">Backup data now</string>
     <string name="get_data_from_server">Get data from server</string>
     <string name="auto_backup">Auto backup</string>
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="groceries">Groceries</string>
 </resources>
