@@ -40,6 +40,7 @@ class MonthsFragment : Fragment() {
     ): View {
         configureList()
         observeViewModel()
+        autoBackupData()
         setupFAB()
 
         return binding.root
@@ -75,6 +76,15 @@ class MonthsFragment : Fragment() {
             noItemsViewTextView.text = text
         } else {
             noItemsViewTextView.visibility = View.GONE
+        }
+    }
+
+    private fun autoBackupData() {
+        sharedPreferences =
+            context?.getSharedPreferences("sharedPref", Context.MODE_PRIVATE)!!
+        val autoBackup = sharedPreferences.getBoolean("autoBackup", false)
+        if (autoBackup) {
+            viewModel.backupData(requireContext())
         }
     }
 }
