@@ -13,4 +13,6 @@ interface GroceriesRepository {
     suspend fun checkGrocery(groceryId: Int)
 
     suspend fun uncheckGrocery(groceryId: Int)
+
+    suspend fun updateGrocery(groceryId: Int, name: String)
 }
