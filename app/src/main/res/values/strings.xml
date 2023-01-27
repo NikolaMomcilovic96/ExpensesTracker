@@ -33,4 +33,5 @@
     <string name="add_first_grocery">Add first grocery</string>
     <string name="add_new_grocery">Add new grocery</string>
     <string name="checkbox">checkbox</string>
+    <string name="grocery_name">Grocery name</string>
 </resources>

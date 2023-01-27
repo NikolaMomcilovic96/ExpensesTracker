@@ -49,7 +49,7 @@ android {
 ext {
     kotlinVersion = '1.9.0'
     appcompatVersion = '1.6.0'
-    materialVersion = '1.7.0'
+    materialVersion = '1.8.0'
     constraintLayoutVersion = '2.1.4'
     hiltVersion = '2.42'
     hiltCompilerVersion = '1.0.0'
@@ -77,6 +77,7 @@ dependencies {
     implementation "androidx.constraintlayout:constraintlayout:${constraintLayoutVersion}"
     implementation "androidx.navigation:navigation-fragment-ktx:${navigationVersion}"
     implementation "androidx.navigation:navigation-ui-ktx:${navigationVersion}"
+    implementation 'androidx.core:core-ktx:1.9.0'
     testImplementation "junit:junit:${junitVersion}"
     androidTestImplementation "androidx.test.ext:junit:${junitTestVersion}"
     androidTestImplementation "androidx.test.espresso:espresso-core:${espressoCoreVersion}"
