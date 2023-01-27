@@ -6,7 +6,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.expensestracker.databinding.GroceryItemBinding
 import com.example.expensestracker.domain.models.Grocery
 
-class GroceriesAdapter :
+class GroceriesAdapter(private val onGroceryClickListener: GroceryClickListener) :
     RecyclerView.Adapter<GroceriesViewHolder>() {
 
     private var groceries = mutableListOf<Grocery>()
@@ -18,6 +18,7 @@ class GroceriesAdapter :
                 parent,
                 false
             ),
+            onGroceryClickListener
         )
     }
 
@@ -32,5 +33,9 @@ class GroceriesAdapter :
     fun setData(groceries: List<Grocery>) {
         this.groceries = groceries.toMutableList()
         notifyDataSetChanged()
+    }
+
+    interface GroceryClickListener {
+        fun onGroceryClickListener(grocery: Grocery)
     }
 }

@@ -16,11 +16,11 @@ import com.example.expensestracker.viewmodel.GroceriesViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
-class GroceriesFragment : Fragment() {
+class GroceriesFragment : Fragment(), GroceriesAdapter.GroceryClickListener {
 
     private val binding by viewBinding(FragmentGroceriesBinding::inflate)
     private val viewModel: GroceriesViewModel by viewModels()
-    private val adapter = GroceriesAdapter()
+    private val adapter = GroceriesAdapter(this)
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -43,8 +43,8 @@ class GroceriesFragment : Fragment() {
     private fun observeViewModel() {
         viewModel.getAllGroceries()
         viewModel.groceries.observe(viewLifecycleOwner) {
-            checkIfEmptyRecyclerView(it)
             adapter.setData(it)
+            checkIfEmptyRecyclerView(it)
         }
     }
 
@@ -60,6 +60,14 @@ class GroceriesFragment : Fragment() {
             noItemsViewTextView.text = text
         } else {
             noItemsViewTextView.visibility = View.GONE
+        }
+    }
+
+    override fun onGroceryClickListener(grocery: Grocery) {
+        if (grocery.checked) {
+            viewModel.uncheckGrocery(grocery.id)
+        } else {
+            viewModel.checkGrocery(grocery.id)
         }
     }
 }

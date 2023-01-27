@@ -9,7 +9,7 @@ import com.example.expensestracker.domain.models.Grocery
 @Dao
 interface GroceriesDao {
 
-    @Query("SELECT * FROM grocery")
+    @Query("SELECT * FROM grocery ORDER BY checked")
     suspend fun getAllGroceries(): List<Grocery>
 
     @Insert(onConflict = REPLACE)
