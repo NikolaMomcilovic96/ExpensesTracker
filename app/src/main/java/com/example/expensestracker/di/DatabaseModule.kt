@@ -3,6 +3,7 @@ package com.example.expensestracker.di
 import android.content.Context
 import androidx.room.Room
 import com.example.expensestracker.data.database.AppDatabase
+import com.example.expensestracker.data.database.GroceriesDao
 import com.example.expensestracker.data.database.MonthsDao
 import dagger.Module
 import dagger.Provides
@@ -29,6 +30,12 @@ class DatabaseModule {
     @Singleton
     fun provideMonthsDao(appDatabase: AppDatabase): MonthsDao {
         return appDatabase.getMonthsDao()
+    }
+
+    @Provides
+    @Singleton
+    fun provideGroceryDao(appDatabase: AppDatabase): GroceriesDao {
+        return appDatabase.getGroceriesDao()
     }
 
     companion object {

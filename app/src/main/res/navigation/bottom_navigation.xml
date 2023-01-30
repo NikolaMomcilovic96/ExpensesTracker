@@ -6,4 +6,5 @@
 
     <include app:graph="@navigation/navigation_months" />
     <include app:graph="@navigation/navigation_settings" />
+    <include app:graph="@navigation/navigation_groceries" />
 </navigation>

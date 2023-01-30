@@ -1,11 +1,14 @@
 package com.example.expensestracker.di
 
+import com.example.expensestracker.data.database.GroceriesDao
 import com.example.expensestracker.data.database.MonthsDao
+import com.example.expensestracker.data.database.repository.GroceriesRepositoryDBImpl
 import com.example.expensestracker.data.database.repository.MonthsRepositoryDBImpl
 import com.example.expensestracker.data.network.FirebaseService
 import com.example.expensestracker.data.network.repository.MonthsRepositoryNetworkImpl
 import com.example.expensestracker.di.qualifier.DB
 import com.example.expensestracker.di.qualifier.Rest
+import com.example.expensestracker.domain.repository.GroceriesRepository
 import com.example.expensestracker.domain.repository.MonthsRepository
 import dagger.Module
 import dagger.Provides
@@ -29,5 +32,11 @@ class RepositoryModule {
     @Singleton
     fun provideMonthsNetworkRepository(firebaseService: FirebaseService): MonthsRepository {
         return MonthsRepositoryNetworkImpl(firebaseService)
+    }
+
+    @Provides
+    @Singleton
+    fun provideGroceriesRepository(groceriesDao: GroceriesDao): GroceriesRepository {
+        return GroceriesRepositoryDBImpl(groceriesDao)
     }
 }

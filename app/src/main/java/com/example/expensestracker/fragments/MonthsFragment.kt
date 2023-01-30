@@ -72,8 +72,6 @@ class MonthsFragment : Fragment() {
     private fun checkIfEmptyRecyclerView(months: List<Month>) = with(binding) {
         if (months.isEmpty()) {
             noItemsViewTextView.visibility = View.VISIBLE
-            val text = "Add first month"
-            noItemsViewTextView.text = text
         } else {
             noItemsViewTextView.visibility = View.GONE
         }

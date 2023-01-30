@@ -106,8 +106,6 @@ class MonthsViewModel @Inject constructor(
 
     fun getYourData(context: Context) {
         viewModelScope.launch {
-            monthsUseCase.getYourData(context)
-            getMonths()
             val data = monthsUseCase.getYourData(context)
             for (m in data.first) {
                 val month = Month(m.id, m.name, m.total)
