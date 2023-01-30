@@ -56,8 +56,6 @@ class GroceriesFragment : Fragment(), GroceriesAdapter.GroceryClickListener {
     private fun checkIfEmptyRecyclerView(groceries: List<Grocery>) = with(binding) {
         if (groceries.isEmpty()) {
             noItemsViewTextView.visibility = View.VISIBLE
-            val text = "Add first grocery"
-            noItemsViewTextView.text = text
         } else {
             noItemsViewTextView.visibility = View.GONE
         }
