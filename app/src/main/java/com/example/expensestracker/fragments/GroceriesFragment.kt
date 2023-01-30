@@ -10,17 +10,19 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.expensestracker.adapters.GroceriesAdapter
 import com.example.expensestracker.databinding.FragmentGroceriesBinding
 import com.example.expensestracker.dialogs.AddGroceryDialog
+import com.example.expensestracker.dialogs.EditGroceryDialog
 import com.example.expensestracker.domain.models.Grocery
 import com.example.expensestracker.fragments.delegates.viewBinding
 import com.example.expensestracker.viewmodel.GroceriesViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
-class GroceriesFragment : Fragment(), GroceriesAdapter.GroceryClickListener {
+class GroceriesFragment : Fragment(), GroceriesAdapter.GroceryClickListener,
+    GroceriesAdapter.GroceryCheckboxClickListener {
 
     private val binding by viewBinding(FragmentGroceriesBinding::inflate)
     private val viewModel: GroceriesViewModel by viewModels()
-    private val adapter = GroceriesAdapter(this)
+    private val adapter = GroceriesAdapter(this, this)
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -62,6 +64,16 @@ class GroceriesFragment : Fragment(), GroceriesAdapter.GroceryClickListener {
     }
 
     override fun onGroceryClickListener(grocery: Grocery) {
+        val dialog = EditGroceryDialog(
+            requireContext(),
+            viewModel,
+            grocery.name,
+            grocery.id
+        )
+        dialog.showDialog()
+    }
+
+    override fun onGroceryCheckboxClickListener(grocery: Grocery) {
         if (grocery.checked) {
             viewModel.uncheckGrocery(grocery.id)
         } else {

@@ -8,7 +8,8 @@ import com.example.expensestracker.domain.models.Grocery
 
 class GroceriesViewHolder(
     private val binding: GroceryItemBinding,
-    private val groceryClickListener: GroceriesAdapter.GroceryClickListener
+    private val groceryClickListener: GroceriesAdapter.GroceryClickListener,
+    private val groceryCheckboxClickListener: GroceriesAdapter.GroceryCheckboxClickListener
 ) : RecyclerView.ViewHolder(binding.root) {
 
     fun bind(grocery: Grocery) = with(binding) {
@@ -20,6 +21,10 @@ class GroceriesViewHolder(
         groceryCheckBox.setOnClickListener {
             isChecked = !isChecked
             Glide.with(groceryCheckBox.context).load(loadImage(isChecked)).into(groceryCheckBox)
+            groceryCheckboxClickListener.onGroceryCheckboxClickListener(grocery)
+        }
+
+        groceryCardView.setOnClickListener {
             groceryClickListener.onGroceryClickListener(grocery)
         }
     }

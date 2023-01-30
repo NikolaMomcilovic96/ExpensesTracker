@@ -6,7 +6,10 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.expensestracker.databinding.GroceryItemBinding
 import com.example.expensestracker.domain.models.Grocery
 
-class GroceriesAdapter(private val onGroceryClickListener: GroceryClickListener) :
+class GroceriesAdapter(
+    private val onGroceryClickListener: GroceryClickListener,
+    private val onGroceryCheckboxClickListener: GroceryCheckboxClickListener
+) :
     RecyclerView.Adapter<GroceriesViewHolder>() {
 
     private var groceries = mutableListOf<Grocery>()
@@ -18,7 +21,8 @@ class GroceriesAdapter(private val onGroceryClickListener: GroceryClickListener)
                 parent,
                 false
             ),
-            onGroceryClickListener
+            onGroceryClickListener,
+            onGroceryCheckboxClickListener
         )
     }
 
@@ -37,5 +41,9 @@ class GroceriesAdapter(private val onGroceryClickListener: GroceryClickListener)
 
     interface GroceryClickListener {
         fun onGroceryClickListener(grocery: Grocery)
+    }
+
+    interface GroceryCheckboxClickListener {
+        fun onGroceryCheckboxClickListener(grocery: Grocery)
     }
 }
