@@ -67,6 +67,7 @@ ext {
     gsonVersion = '2.9.1'
     firebaseVersion = '20.1.0'
     firebaseBomVersion = '31.1.1'
+    biometricVersion = '1.2.0-alpha05'
 }
 
 dependencies {
@@ -99,4 +100,5 @@ dependencies {
     implementation "com.google.firebase:firebase-database:${firebaseVersion}"
     implementation "com.google.firebase:firebase-database-ktx:${firebaseVersion}"
     implementation "com.google.firebase:firebase-bom:${firebaseBomVersion}"
+    implementation "androidx.biometric:biometric-ktx:${biometricVersion}"
 }
