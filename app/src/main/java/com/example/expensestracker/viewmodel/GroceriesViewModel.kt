@@ -58,4 +58,16 @@ class GroceriesViewModel @Inject constructor(private val useCase: GroceriesUseCa
             getAllGroceries()
         }
     }
+
+    fun checkAll() {
+        viewModelScope.launch {
+            val allGroceries = useCase.getGroceries()
+            for (g in allGroceries) {
+                if (!g.checked) {
+                    useCase.checkGrocery(g.id)
+                }
+            }
+            getAllGroceries()
+        }
+    }
 }
