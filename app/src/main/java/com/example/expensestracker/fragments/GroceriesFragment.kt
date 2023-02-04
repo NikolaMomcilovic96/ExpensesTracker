@@ -31,6 +31,7 @@ class GroceriesFragment : Fragment(), GroceriesAdapter.GroceryClickListener,
         configureList()
         observeViewModel()
         configureFAB()
+        configureCheckAll()
 
         return binding.root
     }
@@ -60,6 +61,12 @@ class GroceriesFragment : Fragment(), GroceriesAdapter.GroceryClickListener,
             noItemsViewTextView.visibility = View.VISIBLE
         } else {
             noItemsViewTextView.visibility = View.GONE
+        }
+    }
+
+    private fun configureCheckAll() = with(binding) {
+        checkAllTextView.setOnClickListener {
+            viewModel.checkAll()
         }
     }
 

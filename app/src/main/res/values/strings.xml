@@ -37,4 +37,5 @@
     <string name="edit_grocery">Edit grocery</string>
     <string name="delete_grocery">Delete grocery</string>
     <string name="graph">Graph</string>
+    <string name="check_all">Check all</string>
 </resources>
