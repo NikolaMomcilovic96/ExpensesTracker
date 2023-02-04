@@ -1,6 +1,8 @@
 # ExpensesTracker
 
-ExpensesTracker is the app made for tracking expenses of users. 
+ExpensesTracker is the app made for tracking expenses of users.
+
+All users expenses are secured by biometric authentication. Only phone owner can access expenses tab.
 
 User can change the currency that expenses are going to be saved in.
 
