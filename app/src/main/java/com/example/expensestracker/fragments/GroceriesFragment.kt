@@ -48,6 +48,7 @@ class GroceriesFragment : Fragment(), GroceriesAdapter.GroceryClickListener,
         viewModel.groceries.observe(viewLifecycleOwner) {
             adapter.setData(it)
             checkIfEmptyRecyclerView(it)
+            displayingCheckAllButton(it)
         }
     }
 
@@ -67,6 +68,20 @@ class GroceriesFragment : Fragment(), GroceriesAdapter.GroceryClickListener,
     private fun configureCheckAll() = with(binding) {
         checkAllTextView.setOnClickListener {
             viewModel.checkAll()
+        }
+    }
+
+    private fun displayingCheckAllButton(list: List<Grocery>) = with(binding) {
+        var unchecked = 0
+        for (i in list) {
+            if (!i.checked) {
+                unchecked += 1
+            }
+        }
+        if (unchecked > 0) {
+            checkAllTextView.visibility = View.VISIBLE
+        } else {
+            checkAllTextView.visibility = View.GONE
         }
     }
 
