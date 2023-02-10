@@ -13,7 +13,7 @@ android {
 
     defaultConfig {
         applicationId "com.example.expensestracker"
-        minSdk 25
+        minSdk 26
         targetSdk 33
         versionCode 1
         versionName "1.0"
@@ -48,7 +48,7 @@ android {
 
 ext {
     kotlinVersion = '1.9.0'
-    appcompatVersion = '1.6.0'
+    appcompatVersion = '1.6.1'
     materialVersion = '1.8.0'
     constraintLayoutVersion = '2.1.4'
     hiltVersion = '2.42'
