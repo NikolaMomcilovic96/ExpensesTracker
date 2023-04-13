@@ -48,15 +48,16 @@ android {
 
 ext {
     kotlinVersion = '1.9.0'
+    coreKtxVersion = '1.9.0'
     appcompatVersion = '1.6.1'
     materialVersion = '1.8.0'
     constraintLayoutVersion = '2.1.4'
     hiltVersion = '2.42'
     hiltCompilerVersion = '1.0.0'
-    roomVersion = '2.5.0'
+    roomVersion = '2.5.1'
     retrofitVersion = '2.9.0'
     mockitoVersion = '4.8.0'
-    mockitoKotlinVersion = '4.0.0'
+    mockitoKotlinVersion = '4.1.0'
     mockkVersion = '1.13.2'
     junitVersion = '4.13.2'
     junitTestVersion = '1.1.5'
@@ -68,17 +69,18 @@ ext {
     firebaseVersion = '20.1.0'
     firebaseBomVersion = '31.1.1'
     biometricVersion = '1.2.0-alpha05'
+    activityKtxVersion = '1.6.0-alpha05'
 }
 
 dependencies {
 
-    implementation "androidx.core:core-ktx:${kotlinVersion}"
+    implementation "androidx.activity:activity-ktx:${activityKtxVersion}"
+    implementation "androidx.core:core-ktx:${coreKtxVersion}"
     implementation "androidx.appcompat:appcompat:${appcompatVersion}"
     implementation "com.google.android.material:material:${materialVersion}"
     implementation "androidx.constraintlayout:constraintlayout:${constraintLayoutVersion}"
     implementation "androidx.navigation:navigation-fragment-ktx:${navigationVersion}"
     implementation "androidx.navigation:navigation-ui-ktx:${navigationVersion}"
-    implementation 'androidx.core:core-ktx:1.9.0'
     testImplementation "junit:junit:${junitVersion}"
     androidTestImplementation "androidx.test.ext:junit:${junitTestVersion}"
     androidTestImplementation "androidx.test.espresso:espresso-core:${espressoCoreVersion}"
